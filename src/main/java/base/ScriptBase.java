@@ -57,7 +57,8 @@ public class ScriptBase {
             caps.setBrowserName(browser);
             caps.setCapability("browserName", "chrome");
             caps.setCapability("platform", "macOS 10.13");
-            caps.setCapability("version", "latest");caps.setCapability("tunnel-identifier", "mplatformTunnel");
+            caps.setCapability("version", "latest");
+            //caps.setCapability("tunnel-identifier", "mplatformTunnel");
             driver = new RemoteWebDriver(new URL(URL), caps);
 
         } else if (browser.equalsIgnoreCase("sauceLabFirefox")) {
@@ -77,7 +78,7 @@ public class ScriptBase {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         }
 
-
+        driver.get("http://automationpractice.com/index.php");
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
 
     }
