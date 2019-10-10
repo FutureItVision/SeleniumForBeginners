@@ -4,11 +4,16 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class ScriptBase {
     public  WebDriver driver;
@@ -36,5 +41,43 @@ public class ScriptBase {
         driver.get("http://automationpractice.com/index.php");
 
     }
+    @Parameters({"browser","environment"})
+    @BeforeClass
+    public void beforeTest(String browser,String environment) throws MalformedURLException, InterruptedException {
 
+        if (browser.equalsIgnoreCase("chrome")) {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("--kiosk");
+            System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"/driver/chromedriver");
+            driver = new ChromeDriver(chromeOptions);
+        }  else if (browser.equalsIgnoreCase("sauceLabChrome")) {
+            System.out.println(" Executing on CHROME");
+            DesiredCapabilities caps = new DesiredCapabilities();
+            caps.setBrowserName(browser);
+            caps.setCapability("browserName", "chrome");
+            caps.setCapability("platform", "macOS 10.13");
+            caps.setCapability("version", "latest");caps.setCapability("tunnel-identifier", "mplatformTunnel");
+            driver = new RemoteWebDriver(new URL(URL), caps);
+
+        } else if (browser.equalsIgnoreCase("sauceLabFirefox")) {
+            System.out.println(" Executing on Firefox");
+            DesiredCapabilities caps = new DesiredCapabilities();
+            caps.setBrowserName(browser);
+            caps.setCapability("browserName","firefox");
+            caps.setCapability("version", "latest");
+            //caps.setCapability("tunnel-identifier", "mplatformTunnel");
+            driver = new RemoteWebDriver(new URL(URL), caps);
+
+        }
+        else if (browser.equalsIgnoreCase("firefox")) {
+            System.setProperty("webdriver.gecko.driver", "./driver/geckodriver");
+            driver = new FirefoxDriver();
+            System.out.println(" Executing on FireFox");
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        }
+
+
+        driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
+
+    }
 }

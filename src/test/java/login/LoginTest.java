@@ -12,7 +12,7 @@ public class LoginTest extends ScriptBase {
    @BeforeTest
    public void beforetest(){
 
-       init();
+       //init();
    }
    @Test (alwaysRun =true,priority = 1,description = "Verify Invalid Login Test")
     public void verifyInvalidLogin() {

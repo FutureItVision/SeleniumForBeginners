@@ -11,7 +11,7 @@ public class HomePageTest extends ScriptBase {
     @BeforeTest
     public void beforetest(){
 
-        init();
+       // init();
     }
 
    @Test

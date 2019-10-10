@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="/Users/nadiruzzamanmuhammad/SeleniumForBeginners">
+        <parameter name="browser" value="sauceLabChrome"></parameter>
         <classes>
             <class name="contactPage.ContactPageTest">
                 <methods>
