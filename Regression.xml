@@ -3,6 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="/Users/nadiruzzamanmuhammad/SeleniumForBeginners">
         <parameter name="browser" value="sauceLabChrome"></parameter>
+        <parameter name="url" value="https://www.google.com"/>
         <classes>
             <class name="contactPage.ContactPageTest">
                 <methods>

@@ -60,7 +60,8 @@ public class ScriptBase {
             caps.setCapability("version", "latest");
             //caps.setCapability("tunnel-identifier", "mplatformTunnel");
             driver = new RemoteWebDriver(new URL(URL), caps);
-            driver.get("http://automationpractice.com/index.php");
+            caps.getCapability("http://automationpractice.com/index.php");
+            //.get("http://automationpractice.com/index.php");
 
         } else if (browser.equalsIgnoreCase("sauceLabFirefox")) {
             System.out.println(" Executing on Firefox");
