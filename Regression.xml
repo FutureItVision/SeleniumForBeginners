@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/Users/nadiruzzamanmuhammad/SeleniumForBeginners">
+        <parameter name="browser" value="sauceLabChrome"></parameter>
+        <classes>
+            <class name="contactPage.ContactPageTest">
+                <methods>
+                    <include name="verifyValidContactPageCreate"/>
+                </methods>
+            </class>
+            <class name="homepage.HomePageTest">
+                <methods>
+                    <include name="VerifyhomepageContactBarInfo"/>
+                    <include name="VerifyHatSearch"/>
+                    <include name="VerifySleeveSearch"/>
+                </methods>
+            </class>
+            <class name="login.LoginTest">
+                <methods>
+                    <include name="verifyInvalidLogin"/>
+                    <include name="verifyInvalidLoginWithInvalidEmail"/>
+                    <include name="verifyvalidLogin"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
