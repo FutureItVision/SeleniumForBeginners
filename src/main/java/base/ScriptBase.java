@@ -1,87 +1,55 @@
 package base;
-
+import com.relevantcodes.extentreports.ExtentReports;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
-
-
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 public class ScriptBase {
-    public  WebDriver driver;
+    public static WebDriver driver;
     public static final Logger log=Logger.getLogger(ScriptBase.class.getName());
-    public static final String USERNAME="ZamanTest";
-    public static final String ACCESS_KEY="030f0777-f8b7-44bd-b148-5dd4726a924d";
-    public static final String URL="http://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:80/wd/hub";
+    public static final String USERNAME="muhammad30";
+    public static final String ACCESS_KEY="ac8ec834-1216-4aae-8fcd-bb978529d23d";
+    public static final String URL="https://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:443/wd/hub";
+    public static ExtentReports extent;
+    public WebDriverWait wait;
 
-
-    public void init(){
-        String Log4jConfigPath="log4j.properties";
-        PropertyConfigurator.configure(Log4jConfigPath);
-        System.setProperty("webdriver.chrome.driver","./drivers/chromedriver");
-        driver=new ChromeDriver();
-        driver.get("http://automationpractice.com/index.php");
-
+    public WebDriver getDriver() {
+        return driver;
     }
 
-    public void saucelab() throws MalformedURLException {
-        DesiredCapabilities caps=new DesiredCapabilities();
-        caps.setCapability("browserName","chrome");
-        caps.setCapability("platform","macOS 10.13");
-        caps.setCapability("version","latest");
-        driver=new RemoteWebDriver(new URL(URL),caps);
-        driver.get("http://automationpractice.com/index.php");
-
-    }
-    @Parameters({"browser","environment"})
+    @Parameters("browser")
     @BeforeClass
-    public void beforeTest(String browser,String environment) throws MalformedURLException, InterruptedException {
+    public void befortest(String browser) throws MalformedURLException {
+        if(browser.equalsIgnoreCase("chrome")){
+            System.setProperty("webdriver.chrome.driver","./drivers/chromedriver");
+            driver=new ChromeDriver();
 
-        if (browser.equalsIgnoreCase("chrome")) {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--kiosk");
-            System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"/driver/chromedriver");
-            driver = new ChromeDriver(chromeOptions);
-        }  else if (browser.equalsIgnoreCase("sauceLabChrome")) {
-            System.out.println(" Executing on CHROME");
-            DesiredCapabilities caps = new DesiredCapabilities();
-            caps.setBrowserName(browser);
-            caps.setCapability("browserName", "chrome");
-            caps.setCapability("platform", "macOS 10.13");
-            caps.setCapability("version", "latest");
-            //caps.setCapability("tunnel-identifier", "mplatformTunnel");
-            driver = new RemoteWebDriver(new URL(URL), caps);
-            caps.getCapability("http://automationpractice.com/index.php");
-            //.get("http://automationpractice.com/index.php");
-
-        } else if (browser.equalsIgnoreCase("sauceLabFirefox")) {
-            System.out.println(" Executing on Firefox");
-            DesiredCapabilities caps = new DesiredCapabilities();
-            caps.setBrowserName(browser);
-            caps.setCapability("browserName","firefox");
-            caps.setCapability("version", "latest");
-            //caps.setCapability("tunnel-identifier", "mplatformTunnel");
-            driver = new RemoteWebDriver(new URL(URL), caps);
-
+        }else if(browser.equalsIgnoreCase("firefox")){
+            System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"/drivers/geckodriver");
+            driver=new FirefoxDriver();
         }
-        else if (browser.equalsIgnoreCase("firefox")) {
-            System.setProperty("webdriver.gecko.driver", "./driver/geckodriver");
-            driver = new FirefoxDriver();
-            System.out.println(" Executing on FireFox");
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        else if(browser.equalsIgnoreCase("safari")){
+            System.setProperty("webdriver.safari.noinstall","true");
+            driver=new SafariDriver();
         }
-
-        //driver.get("http://automationpractice.com/index.php");
-        driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
-
+        else if(browser.equalsIgnoreCase("sauceLabChrome")){
+            DesiredCapabilities caps=new DesiredCapabilities();
+            caps.setCapability("browserName","chrome");
+            caps.setCapability("platform","macOS 10.13");
+            caps.setCapability("version","latest");
+            driver=new RemoteWebDriver(new URL(URL),caps);
+        }
+        driver.get("http://automationpractice.com/index.php");
     }
+
 }

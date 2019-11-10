@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="/Users/nadiruzzamanmuhammad/SeleniumForBeginners">
-        <parameter name="browser" value="sauceLabChrome"></parameter>
-        <parameter name="url" value="https://www.google.com"/>
+<suite name="TestSuite" >
+
+    <test name="SeleniumForBeginners1" >
+        <parameter name="browser" value="chrome"></parameter>
         <classes>
+            <class name="cataloguePage.cataloguePageTest">
+                <methods>
+                    <include name="verifyWomenCatalogeTabDisplay"/>
+                </methods>
+            </class>
+            <class name="cartPage.CartPageTest">
+                <methods>
+                    <include name="verifyBlouseAddCartwithQuantity"/>
+                    <include name="verifySleeveAddCartwithQuantitytwo"/>
+                </methods>
+            </class>
             <class name="contactPage.ContactPageTest">
                 <methods>
                     <include name="verifyValidContactPageCreate"/>
                 </methods>
             </class>
-            <class name="homepage.HomePageTest">
-                <methods>
-                    <include name="VerifyhomepageContactBarInfo"/>
-                    <include name="VerifyHatSearch"/>
-                    <include name="VerifySleeveSearch"/>
-                </methods>
-            </class>
-            <class name="login.LoginTest">
-                <methods>
-                    <include name="verifyInvalidLogin"/>
-                    <include name="verifyInvalidLoginWithInvalidEmail"/>
-                    <include name="verifyvalidLogin"/>
-                </methods>
-            </class>
         </classes>
     </test>
+
 </suite>
+

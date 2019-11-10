@@ -1,19 +1,12 @@
 package socialMediaPage;
 
 import base.ScriptBase;
-import controller.LoginPage;
 import controller.SocialMediaPage;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 public class socialMediaPageTest extends ScriptBase {
 SocialMediaPage socialMediaPage;
-
-    @BeforeTest
-    public void beforetest(){
-
-        init();
-    }
 
     @Test
     public void verifyFacebookPage() {
@@ -34,6 +27,11 @@ SocialMediaPage socialMediaPage;
         socialMediaPage = new SocialMediaPage(driver);
         socialMediaPage.socialMediaPageVerification("youtube",driver,"Selenium Framework - YouTube");
 
+    }
+    @AfterTest
+    public void closeBrowsr(){
+        driver.close();
+        driver.quit();
     }
 }
 
