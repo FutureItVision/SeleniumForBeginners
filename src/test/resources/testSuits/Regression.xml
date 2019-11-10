@@ -6,7 +6,7 @@
     <listener class-name="reporting.Listeners.Listener"></listener>
     <listener class-name="reporting.Listeners.AnnotationTransformer"></listener>
 </listeners>
-    <parameter name="browser" value="sauceLabChrome"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
     <test name="Regression">
      <classes>
             <!--<class name="contactPage.ContactPageTest">
