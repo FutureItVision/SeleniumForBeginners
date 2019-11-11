@@ -4,7 +4,7 @@ pipeline{
      label 'mypod'
      defaultContainer 'jnlp'
      yaml """
-apiVersion: v1
+apiVersion: 1.28.4
 kind: Pod
 metadata:
  labels:
