@@ -1,23 +1,15 @@
 pipeline{
  agent {
    kubernetes {
- apiVersion: extensions/v1beta1
- kind: Deployment
- metadata:
-   labels:
-     app: jenkins
-   name: jenkins
- spec:
-   replicas: 1
-   selector:
-     matchLabels:
-       app: jenkins
-   template:
-     metadata:
-       labels:
-         app: jenkins
-     spec:
-       serviceAccountName: jenkins
+     label 'mypod'
+     defaultContainer 'jnlp'
+     yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+ labels:
+   some-label: some-label-value
+spec:
  containers:
  - name: saucelab
    image: henrrich/docker-sauce-connect:latest
