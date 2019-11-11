@@ -1,42 +1,13 @@
 pipeline{
- agent {
-   kubernetes {
-     label 'mypod'
-     defaultContainer 'jnlp'
-     yaml """
-apiVersion: v1
-kind: Pod
-metadata:
- labels:
-   some-label: some-label-value
-spec:
- containers:
- - name: saucelab
-   image: henrrich/docker-sauce-connect:latest
-   command:
-   - cat
-   tty: true
- - name: maven
-   image: maven:3.3.9
-   command:
-   - cat
-   tty: true
- - name: gradle
-   image: gradle:latest
-   command:
-   - cat
-   tty: true
-"""
-   }
- }
 stages {
+
        stage('Main parallel') {
            parallel {
                stage('Start containers') {
                    stages {
                        stage('Start Sauce Connect') {
                            steps{
-                                 container('saucelab'){
+                                 container(saucelab : 'henrrich/docker-sauce-connect:latest'){
                                  sh """
                                  /usr/local/sauce-connect/bin/sc -u muhammad30 -k ac8ec834-1216-4aae-8fcd-bb978529d23d --tunnel-identifier futureItVision &
                                  """
@@ -50,7 +21,7 @@ stages {
                    stages {
                        stage('Test'){
                            steps{
-                                container('maven'){
+                                container(maven : 'maven:3.3.9'){
                                 sh """
                                 sleep 1
                                 mvn clean test -DsuiteXmlFile=src/test/resources/testSuits/Regression.xml
