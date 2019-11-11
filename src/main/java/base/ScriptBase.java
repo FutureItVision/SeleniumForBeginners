@@ -47,6 +47,7 @@ public class ScriptBase {
             caps.setCapability("browserName","chrome");
             caps.setCapability("platform","macOS 10.13");
             caps.setCapability("version","latest");
+            caps.setCapability("tunnel-identifier","futureItVision");
             driver=new RemoteWebDriver(new URL(URL),caps);
         }
         driver.get("http://automationpractice.com/index.php");
