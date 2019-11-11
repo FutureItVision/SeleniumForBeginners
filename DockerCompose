@@ -1,6 +1,15 @@
 pipeline{
  agent {
    docker {
+     label 'mypod'
+     defaultContainer 'jnlp'
+     yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+ labels:
+   some-label: some-label-value
+spec:
  containers:
  - name: saucelab
    image: henrrich/docker-sauce-connect:latest
