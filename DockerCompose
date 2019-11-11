@@ -7,7 +7,7 @@ stages {
                    stages {
                        stage('Start Sauce Connect') {
                            steps{
-                                 container(saucelab : 'henrrich/docker-sauce-connect:latest'){
+                                 withSaucelab(saucelab : 'henrrich/docker-sauce-connect:latest'){
                                  sh """
                                  /usr/local/sauce-connect/bin/sc -u muhammad30 -k ac8ec834-1216-4aae-8fcd-bb978529d23d --tunnel-identifier futureItVision &
                                  """
@@ -21,7 +21,7 @@ stages {
                    stages {
                        stage('Test'){
                            steps{
-                                container(maven : 'maven:3.3.9'){
+                                withMaven(maven : 'maven:3.3.9'){
                                 sh """
                                 sleep 1
                                 mvn clean test -DsuiteXmlFile=src/test/resources/testSuits/Regression.xml
