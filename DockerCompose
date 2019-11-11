@@ -1,24 +1,15 @@
 pipeline{
  agent {
    kubernetes {
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: jenkins
-    labels:
-      app: jenkins
-  spec:
-    ports:
-      - name: jnlp
-        port: 40294
-        targetPort: 40294
-      - name: http
-        port: 80
-        targetPort: 8080
-    selector:
-      app: jenkins
-      tier: jenkins
-    type: NodePort
+     label 'jenkins'
+     defaultContainer 'jnlp'
+     yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+ labels:
+   some-label: some-label-value
+spec:
  containers:
  - name: saucelab
    image: henrrich/docker-sauce-connect:latest
