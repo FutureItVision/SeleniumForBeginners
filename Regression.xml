@@ -1,31 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="TestSuite" >
+<suite name="All Test Suite" parallel="tests" >
     <listeners>
         <listener class-name="ExtentList.ExtentListiner"></listener>
     </listeners>
 
-    <test name="SeleniumForBeginners1" >
-        <parameter name="browser" value="chrome"></parameter>
-        <classes>
-            <class name="cataloguePage.cataloguePageTest">
+    <parameter name="browser" value="chromeSaucelab"></parameter>
+    <test name="Regression">
+     <classes>
+            <class name="login.LoginTest">
                 <methods>
-                    <include name="verifyWomenCatalogeTabDisplay"/>
+                    <include name="verifyvalidLogin"/>
                 </methods>
             </class>
-           <!-- <class name="cartPage.CartPageTest">
-                <methods>
-                    <include name="verifyBlouseAddCartwithQuantity"/>
-                    <include name="verifySleeveAddCartwithQuantitytwo"/>
-                </methods>
-            </class>
-            <class name="contactPage.ContactPageTest">
-                <methods>
-                    <include name="verifyValidContactPageCreate"/>
-                </methods>
-            </class>-->
-        </classes>
+     </classes>
     </test>
-
 </suite>
-
