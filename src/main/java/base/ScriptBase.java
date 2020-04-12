@@ -47,7 +47,7 @@ public class ScriptBase {
             caps.setCapability("platform","Windows 8");
             caps.setCapability("version","54");
             caps.setCapability("name","Regression");
-            caps.setCapability("tunnelIdentifier","futureItVision");
+            //caps.setCapability("tunnelIdentifier","futureItVision");
 
             driver=new RemoteWebDriver(new URL(GET_URL),caps);
         }
