@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -42,12 +43,22 @@ public class ScriptBase {
             driver=new SafariDriver();
         }else if(browser.equalsIgnoreCase("chromeSaucelab")){
             DesiredCapabilities caps=new DesiredCapabilities();
-            caps.setBrowserName(browser);
+            /*caps.setBrowserName(browser);
             caps.setCapability("browserName","chrome");
             caps.setCapability("platform","Windows 8");
-            caps.setCapability("version","54");
-            caps.setCapability("name","Regression");
+            caps.setCapability("version","54");*/
+
+            caps.setBrowserName(browser);
+            caps.setCapability("browserName","firefox");
+            caps.setCapability("platform","LINUX");
+            caps.setCapability("browserVersion","16");
+            caps.setCapability("os","Linux");
+            caps.setCapability("url","sauce-ondemand:?os=Linux&browser=firefox&browser-version=16");
             //caps.setCapability("tunnelIdentifier","futureItVision");
+            caps.setBrowserName(System.getenv("SELENIUM_BROWSER"));
+            caps.setVersion(System.getenv("SELENIUM_VERSION"));
+            caps.setCapability(CapabilityType.PLATFORM, System.getenv("SELENIUM_PLATFORM"));
+
 
             driver=new RemoteWebDriver(new URL(GET_URL),caps);
         }
