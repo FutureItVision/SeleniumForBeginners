@@ -17,11 +17,10 @@ import java.net.URL;
 public class ScriptBase {
     public static WebDriver driver;
     public static final Logger log=Logger.getLogger(ScriptBase.class.getName());
-    public static final String USERNAME="khanjada";
-    public static final String ACCESS_KEY="52e6f143-6938-432e-b449-10b965aae045";
-    public static final String URL="https://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:443/wd/hub";
     public static ExtentReports extent;
-    public WebDriverWait wait;
+    public static final String USERNAME="futureItVision";
+    public static final String ACCESS_KEY="f927b277-969a-4791-8ca7-cb195b8cedf8";
+    public static final String GET_URL="https://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:443/wd/hub";
 
     public WebDriver getDriver() {
         return driver;
@@ -41,15 +40,18 @@ public class ScriptBase {
         else if(browser.equalsIgnoreCase("safari")){
             System.setProperty("webdriver.safari.noinstall","true");
             driver=new SafariDriver();
-        }
-        else if(browser.equalsIgnoreCase("sauceLabChrome")){
+        }else if(browser.equalsIgnoreCase("chromeSaucelab")){
             DesiredCapabilities caps=new DesiredCapabilities();
+            caps.setBrowserName(browser);
             caps.setCapability("browserName","chrome");
-            caps.setCapability("platform","macOS 10.13");
-            caps.setCapability("version","latest");
-            caps.setCapability("tunnel-identifier","futureItVision");
-            driver=new RemoteWebDriver(new URL(URL),caps);
+            caps.setCapability("platform","Windows 8");
+            caps.setCapability("version","54");
+            caps.setCapability("name","Regression");
+            caps.setCapability("tunnelIdentifier","futureItVision");
+
+            driver=new RemoteWebDriver(new URL(GET_URL),caps);
         }
+
         driver.get("http://automationpractice.com/index.php");
     }
 

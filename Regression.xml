@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="TestSuite" >
     <listeners>
-        <listener class-name="listNew.ExtentListiner"></listener>
+        <listener class-name="ExtentList.ExtentListiner"></listener>
     </listeners>
 
     <test name="SeleniumForBeginners1" >
