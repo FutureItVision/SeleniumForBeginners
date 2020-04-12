@@ -20,11 +20,13 @@ public class LoginPage{
     public static final Logger log=Logger.getLogger(CartPage.class.getName());
     @FindBy(xpath = "//*[@id='header']//a[@class='login']")
     WebElement signinButton;
+    @FindBy(xpath = "//*[@id='head")
+    WebElement signinButtons;
     @FindBy(id = "email")
     WebElement emailSenkey;
     @FindBy(id = "passwd")
     WebElement passwordSenkey;
-    @FindBy(css = "#SubmitLogin > test")
+    @FindBy(id = "SubmitLogin")
     WebElement SigninSubmitButton;
     @FindBy(css = "#center_column > div.alert.alert-danger > ol > li")
     WebElement invalidSignInerror;
@@ -49,11 +51,17 @@ public class LoginPage{
     }
 
     public void validSignin(String email,String Pass){
+try {
+    signinButtons.click();
+}catch (Exception e){
+    System.out.println(signinButtons + "not found, Go to next step" );
+}
         signinButton.click();
+        System.out.println(signinButton+ " Click");
         emailSenkey.sendKeys(email);
         passwordSenkey.sendKeys(Pass);
         SigninSubmitButton.click();
-        Assert.assertEquals(signinWelcomeMessage,signinWelcomeMessage);
+        //Assert.assertEquals(signinWelcomeMessage,signinWelcomeMessage);
 
     }
 

@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import reporting.ExtentsReports.ExtentTestManager;
 
 public class LoginTest extends ScriptBase {
+
     LoginPage loginPage;
    @Test (alwaysRun =true,priority = 1,description = "Verify Invalid Login Test")
     public void verifyInvalidLogin() {

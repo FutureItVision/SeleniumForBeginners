@@ -24,8 +24,14 @@ public class CartPage extends ScriptBase {
     public void addCartWithMultipleQuantity(String product,int quantity,WebDriver driver){
         homePageButton.click();
         log.info("Home Page Button Clicked:"+homePageButton.toString());
-        addCartProduct(product,driver);
-        log.info("Product add cart done");
+
+        try {
+            addCartProduct(product, driver);
+            log.info("Product add cart done");
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
         productQuantity(quantity,quantityPuls);
         log.info("Product quantity added");
 
@@ -51,6 +57,15 @@ public class CartPage extends ScriptBase {
             element.click();
 
         }
+    }
+
+    public void actionClass(){
+
+        Actions actions=new Actions(driver);
+
+        actions.clickAndHold(homePageButton).moveToElement(quantityPuls).release().build().perform();
+
+        actions.dragAndDrop(homePageButton,quantityPuls).pause(10000).release().perform();
     }
 
 }

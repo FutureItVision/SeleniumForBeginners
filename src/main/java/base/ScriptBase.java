@@ -17,8 +17,8 @@ import java.net.URL;
 public class ScriptBase {
     public static WebDriver driver;
     public static final Logger log=Logger.getLogger(ScriptBase.class.getName());
-    public static final String USERNAME="muhammad30";
-    public static final String ACCESS_KEY="ac8ec834-1216-4aae-8fcd-bb978529d23d";
+    public static final String USERNAME="khanjada";
+    public static final String ACCESS_KEY="52e6f143-6938-432e-b449-10b965aae045";
     public static final String URL="https://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:443/wd/hub";
     public static ExtentReports extent;
     public WebDriverWait wait;
@@ -52,5 +52,6 @@ public class ScriptBase {
         }
         driver.get("http://automationpractice.com/index.php");
     }
+
 
 }
