@@ -44,7 +44,7 @@ public class ScriptBase {
             DesiredCapabilities caps=new DesiredCapabilities();
             caps.setBrowserName(browser);
             caps.setCapability("browserName","chrome");
-            caps.setCapability("platform","Windows 8");
+            caps.setCapability("platform","Windows 10");
             caps.setCapability("version","54");
             caps.setCapability("name","Regression");
             //caps.setCapability("tunnelIdentifier","futureItVision");
