@@ -44,8 +44,8 @@ public class ScriptBase {
             DesiredCapabilities caps=new DesiredCapabilities();
             caps.setBrowserName(browser);
             caps.setCapability("browserName","chrome");
-            caps.setCapability("platform","macOS");
-            caps.setCapability("version","10.15.3");
+            caps.setCapability("platform","Windows 10");
+            caps.setCapability("version","54");
             caps.setCapability("name","Regression");
             //caps.setCapability("tunnelIdentifier","futureItVision");
 
@@ -53,7 +53,7 @@ public class ScriptBase {
         }
 
         driver.get("http://automationpractice.com/index.php");
-        driver.manage().deleteAllCookies();
+        //driver.manage().deleteAllCookies();
     }
 
 
