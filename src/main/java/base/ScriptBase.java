@@ -53,6 +53,7 @@ public class ScriptBase {
         }
 
         driver.get("http://automationpractice.com/index.php");
+        driver.manage().deleteAllCookies();
     }
 
 
